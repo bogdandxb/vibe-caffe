@@ -292,6 +292,32 @@ html.lenis-smooth {
   color: white;
 }
 
+/* Fade-in pentru Hero */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  opacity: 0;
+  animation: heroFadeIn 0.7s ease-out forwards;
+}
+
+/* Text shadow pentru Hero */
+.text-shadow-hero {
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.text-shadow-subtitle {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
 /* Hide scrollbar pentru tab-uri */
 .scrollbar-hide {
   -ms-overflow-style: none;
