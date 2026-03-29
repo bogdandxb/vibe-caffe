@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * 🎯 HERO STARTER - Versiunea simplă pentru cursanți
  *
@@ -5,6 +7,13 @@
  * Fără animații, fără video, fără JavaScript complex.
  * Doar HTML + Tailwind CSS = fundația de bază.
  */
+
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = el.getBoundingClientRect().top + window.scrollY - 80;
+  window.scrollTo({ top: offset, behavior: 'smooth' });
+}
 
 export default function HeroStarter() {
   return (
@@ -25,7 +34,7 @@ export default function HeroStarter() {
 
       {/* SCROLL INDICATOR */}
       <a
-        href="#footer"
+        href="#features"
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/75 hover:text-yellow-700 transition-colors animate-bounce hero-fade-in"
         style={{ animationDelay: '1.5s' }}
         aria-label="Scroll mai jos"
@@ -68,12 +77,12 @@ export default function HeroStarter() {
           style={{ animationDelay: '1.1s' }}
         >
           {/* Buton 1 - Primary */}
-          <a
-            href="#menu"
+          <button
+            onClick={() => scrollToSection('menu')}
             className="px-6 py-3 bg-yellow-700 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl text-sm"
           >
             Vezi Meniul
-          </a>
+          </button>
 
           {/* Buton 2 - Secondary */}
           <a

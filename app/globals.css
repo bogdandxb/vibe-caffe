@@ -309,6 +309,18 @@ html.lenis-smooth {
   animation: heroFadeIn 0.7s ease-out forwards;
 }
 
+/* Fade-in pentru Features (staggered) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Text shadow pentru Hero */
 .text-shadow-hero {
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
