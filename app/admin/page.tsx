@@ -29,11 +29,26 @@ function formatData(iso: string) {
 }
 
 export default function AdminPage() {
+  const [autentificat, setAutentificat] = useState(false);
+  const [parola, setParola] = useState('');
+  const [eroareParola, setEroareParola] = useState(false);
+
   const [rezervari, setRezervari] = useState<Rezervare[]>([]);
   const [loading, setLoading] = useState(true);
   const [filtruStatus, setFiltruStatus] = useState<Status>('toate');
   const [cautare, setCautare] = useState('');
   const [actiune, setActiune] = useState<number | null>(null);
+
+  const verificaParola = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (parola === '2604') {
+      setAutentificat(true);
+      setEroareParola(false);
+    } else {
+      setEroareParola(true);
+      setParola('');
+    }
+  };
 
   const fetchRezervari = useCallback(async () => {
     setLoading(true);
@@ -43,7 +58,9 @@ export default function AdminPage() {
     setLoading(false);
   }, []);
 
-  useEffect(() => { fetchRezervari(); }, [fetchRezervari]);
+  useEffect(() => {
+    if (autentificat) fetchRezervari();
+  }, [autentificat, fetchRezervari]);
 
   const schimbaStatus = async (id: number, status: string) => {
     setActiune(id);
@@ -71,6 +88,41 @@ export default function AdminPage() {
   });
 
   const numarareStatus = (s: string) => rezervari.filter(r => r.status === s).length;
+
+  if (!autentificat) {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-teal-950 to-gray-950 flex items-center justify-center px-4">
+        <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-8 w-full max-w-sm">
+          <p className="text-teal-400 text-sm font-semibold uppercase tracking-widest mb-2 text-center">Panou administrare</p>
+          <h1 className="text-2xl font-bold text-white mb-6 text-center">Vibe <span className="text-yellow-600">Caffè</span></h1>
+          <form onSubmit={verificaParola} className="space-y-4">
+            <div>
+              <label className="text-white/60 text-sm mb-1 block">Parolă</label>
+              <input
+                type="password"
+                value={parola}
+                onChange={e => { setParola(e.target.value); setEroareParola(false); }}
+                placeholder="••••"
+                autoFocus
+                className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none transition-all ${
+                  eroareParola ? 'border-red-500 focus:border-red-500' : 'border-white/20 focus:border-teal-500'
+                }`}
+              />
+              {eroareParola && (
+                <p className="text-red-400 text-xs mt-1">Parolă incorectă.</p>
+              )}
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 bg-teal-500 hover:bg-teal-400 text-white font-semibold rounded-xl transition-all"
+            >
+              Intră
+            </button>
+          </form>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-teal-950 to-gray-950 py-10 px-4">
