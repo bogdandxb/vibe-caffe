@@ -17,6 +17,7 @@ import HeroStarter from '@/components/HeroStarter';
 import FeaturesStarter from '@/components/FeaturesStarter';
 import AboutStarter from '@/components/AboutStarter';
 import MenuStarter from '@/components/MenuStarter';
+import RezervariForm from '@/components/RezervariForm';
 import FooterStarter from '@/components/FooterStarter';
 
 /**
@@ -40,6 +41,7 @@ export default function Home() {
       <FeaturesStarter />
       <AboutStarter />
       <MenuStarter />
+      <RezervariForm />
       <FooterStarter />
 
       {/*
