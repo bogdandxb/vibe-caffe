@@ -32,7 +32,7 @@ export const menuItems = [
 
 export const cafeaInfo = {
   program: 'Luni–Duminică: 08:00–22:00',
-  locatie: 'Strada Cafelei 7, București',
+  locatie: 'Strada 13 Decembrie 129A, Brașov',
   facilitati: ['WiFi gratuit', 'Pet-friendly', 'Priză la fiecare masă', 'Muzică live vineri'],
   rezervari: 'Poți face rezervare direct pe site, în secțiunea Rezervări.',
 };
