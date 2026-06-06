@@ -114,6 +114,39 @@ Foreground:         #1F2937
 - Photo gallery (6 images)
 - Google Maps placeholder
 
+## 🗄️ Baza de Date (Supabase)
+
+Proiectul folosește **Supabase** pentru gestionarea rezervărilor și chat-ul AI.
+
+### Recreare bază de date
+
+1. Creează un proiect nou pe [supabase.com](https://supabase.com)
+2. Mergi la **SQL Editor** și rulează fișierul [`supabase/schema.sql`](supabase/schema.sql)
+3. Copiază **Project URL** și **anon key** din Settings → API
+4. Creează fișierul `.env.local`:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+ANTHROPIC_API_KEY=your-anthropic-key  # pentru ChatWidget AI
+```
+
+### Structura tabelului `rezervari`
+
+| Coloană | Tip | Descriere |
+|---------|-----|-----------|
+| `id` | UUID | Primary key auto-generat |
+| `nume` | TEXT | Numele clientului |
+| `email` | TEXT | Email client |
+| `telefon` | TEXT | Telefon client |
+| `persoane` | INTEGER | Nr. persoane (default: 2) |
+| `data_ora` | TIMESTAMP | Data și ora rezervării |
+| `status` | TEXT | `in asteptare` / `confirmata` / `anulata` |
+| `created_at` | TIMESTAMP | Data creării (auto) |
+
+---
+
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
@@ -122,6 +155,8 @@ Foreground:         #1F2937
 | **TypeScript** | Type-safe JavaScript |
 | **Tailwind CSS 4** | Utility-first CSS framework |
 | **React 19** | UI library |
+| **Supabase** | Backend as a Service (baza de date + auth) |
+| **Anthropic Claude** | AI pentru ChatWidget (Barista Bot) |
 | **Unsplash** | High-quality stock photos |
 
 ## 🎓 Educational Purpose
